@@ -37,7 +37,7 @@ const AdminNavbar = () => {
                         <div className="flex items-center space-x-5">
                             {/* Dashboard Button */}
                             <Link
-                                to="/dashboard"
+                                to="/"
                                 className="flex items-center gap-2 text-base font-semibold px-3 py-1 rounded-md bg-white/10 hover:bg-white/30 transition"
                             >
                                 <LayoutDashboard size={20} />

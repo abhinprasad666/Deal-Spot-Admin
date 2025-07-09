@@ -44,7 +44,7 @@ const AdminWelcome = () => {
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <Link
-            to="/dashboard"
+            to="/"
             className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
           >
             Go to Dashboard
