@@ -17,34 +17,18 @@ const LoginForm = () => {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { error, isAuthenticated, loginMessage, loading, user } = useSelector(
+  // const navigate = useNavigate();
+  const { error,  loading } = useSelector(
     (state) => state.auth
   );
 
-  useEffect(() => {
-    if (loginMessage && isAuthenticated && user.role === "admin") {
-      dispatch(clearAuthStateMessage());
-      showToast("Login successful!", "success");
-      navigate("/welcome");
-    }
-  }, [isAuthenticated, navigate, loginMessage, dispatch, user]);
-
-  useEffect(() => {
-    if (error) {
-      // Auto clear error after 5 seconds
-      const timer = setTimeout(() => {
-        dispatch(clearAuthStateMessage());
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [error, dispatch]);
 
   const onSubmit = (data) => {
     dispatch(loginUser(data));
   };
 
   return (
+    
     <div className="md:w-1/2 flex items-center justify-center p-8 animate-fadeIn dark:bg-gray-900 ">
       <form
         onSubmit={handleSubmit(onSubmit)}

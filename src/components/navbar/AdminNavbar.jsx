@@ -19,7 +19,7 @@ const AdminNavbar = () => {
         <>
             <nav
                 className={`transition-all duration-500 sticky top-0 z-50 shadow-sm ${
-                    theme === "dark" ? "bg-gray-900 text-white" : "bg-pink-600 text-white"
+                    theme === "dark" ? "bg-gray-500 text-white" : "bg-pink-600 text-white"
                 }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

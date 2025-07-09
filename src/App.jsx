@@ -1,42 +1,38 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import MainLayout from "./layout/MainLayout";
-import NotFound from "./pages/NotFound";
-import AdminDashboard from "./pages/Dashboard/AdminDashboard";
-import AdminWelcome from "./pages/AdminWelcome/AdminWelcome";
-import Login from "./pages/login/Login";
+import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import ProtectedRoute from "./routes/ProtectedRoute";
+
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./redux/actions/authActions/loadUser";
+import router from "./routes/AppRoutes";
 
 const App = () => {
-  return (
-    <>
-      <Routes>
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoute isAdmin={true} />}>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<AdminDashboard />} />
-            <Route path="/welcome" element={<AdminWelcome />} />
-          </Route>
-        </Route>
+    const dispatch = useDispatch();
 
-        {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
 
-      {/* Toasts */}
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        theme="light"
-      />
-    </>
-  );
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+            dispatch(loadUser());
+          
+        }
+    }, [dispatch]);
+
+
+    return (
+        <>
+            <RouterProvider router={router} />
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                theme="light"
+            />
+        </>
+    );
 };
 
 export default App;

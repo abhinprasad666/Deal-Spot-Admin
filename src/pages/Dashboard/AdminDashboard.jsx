@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Users,
@@ -10,6 +10,12 @@ import {
   Clock,
   Ban,
 } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "../../redux/actions/usersActoin/usersActons";
+import { getAllsellers } from "../../redux/actions/sellerActions/sellerActions";
+import { getAllproducts } from "../../redux/actions/productActions/productAction";
+import { getAllreviews } from "../../redux/actions/authActions/reviewsActions/reviewsActions";
+import { getAllorders, getOrderStatusCounts, getTotalRevenue, } from "../../redux/actions/ordersActions/ordersActions";
 
 const AdminDashboard = () => {
   const stats = [
@@ -70,6 +76,22 @@ const AdminDashboard = () => {
       link: "/admin/orders",
     },
   ];
+ const dispatch = useDispatch();
+
+
+    useEffect(() => {
+            dispatch(getAllUsers());
+            dispatch(getAllsellers());
+            dispatch(getAllproducts());
+            dispatch(getAllreviews());
+            dispatch(getAllorders());
+            dispatch(getTotalRevenue());
+            dispatch(getOrderStatusCounts());
+        
+    }, [dispatch]);
+
+
+
 
   return (
     <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
