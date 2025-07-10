@@ -11,6 +11,8 @@ import ProductListTable from "../pages/ProductListTable/ProductListTable";
 
 import OrdersPage from "../pages/OrdersListTable/OrderPage";
 import CategoryTable from "../pages/category/CategoryTable";
+import CreateCategoryPage from "../pages/category/CreateCategoryForm";
+
 
 const router = createBrowserRouter([
     {
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
                     { path: "admin/products", element: <ProductListTable/> },
                     { path: "admin/orders", element: <OrdersPage/> },
                     { path: "admin/categories", element: <CategoryTable/> },
+                    { path: "admin/category/create", element: <CreateCategoryPage/> },
                 ],
             },
         ],

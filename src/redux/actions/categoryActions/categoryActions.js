@@ -1,12 +1,20 @@
+import axios from "axios";
 import axiosInstance from "../../../api/axios";
-import { addactegoriesRequest, addCategoriesFail, addCategoriesSuccess, categoriesFail, categoriesRequest, categoriesSuccess } from "../../slices/categorySlices/categorySlices";
+import {
+    addactegoriesRequest,
+    addCategoriesFail,
+    addCategoriesSuccess,
+    categoriesFail,
+    categoriesRequest,
+    categoriesSuccess,
+} from "../../slices/categorySlices/categorySlices";
 
 // get all categories
 export const getCategories = async (dispatch) => {
-    console.log("hello")
+    console.log("hello");
     dispatch(categoriesRequest());
     try {
-        const {data} = await axiosInstance(`${import.meta.env.VITE_API_BASE_URL}/api/v1/category`);
+        const { data } = await axiosInstance(`${import.meta.env.VITE_API_BASE_URL}/api/v1/category`);
 
         dispatch(categoriesSuccess(data));
     } catch (error) {
@@ -16,13 +24,25 @@ export const getCategories = async (dispatch) => {
 };
 
 //create categories
-export const createCategories = async (dispatch) => {
+
+export const createCategory = (categoryData) => async (dispatch) => {
+
+    console.log("form data")
     dispatch(addactegoriesRequest());
     try {
-        const { data } = await axiosInstance(`${import.meta.env.VITE_API_BASE_URL}/api/v1/category`);
+        const config = {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        };
+
+        const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/category`, categoryData, config);
+
         dispatch(addCategoriesSuccess(data));
+        console.log("seller add  product", data);
     } catch (error) {
-        console.log("error in create category", error);
+        console.log("error in  seller add product", error);
         dispatch(addCategoriesFail(error.response?.data?.error || "create category faild"));
     }
 };

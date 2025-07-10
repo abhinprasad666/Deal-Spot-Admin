@@ -39,7 +39,7 @@ const CategoryTable = () => {
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-semibold">All Categories</h2>
                 <Link
-                    to="/admin/categories/create"
+                    to="/admin/category/create"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
                 >
                     <PlusCircle className="w-5 h-5" /> Create Category
