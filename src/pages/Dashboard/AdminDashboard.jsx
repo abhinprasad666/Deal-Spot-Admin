@@ -6,11 +6,13 @@ import { getAllUsers } from "../../redux/actions/usersActoin/usersActons";
 import { getAllsellers } from "../../redux/actions/sellerActions/sellerActions";
 import { getAllproducts } from "../../redux/actions/productActions/productAction";
 import { getAllreviews } from "../../redux/actions/authActions/reviewsActions/reviewsActions";
-import { getAllorders, getOrderStatusCounts, getTotalRevenue } from "../../redux/actions/ordersActions/ordersActions";
+import {
+    getAllorders,
+    getOrderStatusCounts,
+    getTotalRevenue,
+} from "../../redux/actions/ordersActions/ordersActions";
+import { getCategories } from "../../redux/actions/categoryActions/categoryActions";
 import { DashboardStats } from "./DashboardStats";
-
-
-
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
@@ -19,8 +21,16 @@ const AdminDashboard = () => {
     const { sellersError, sellers, sellersLoading } = useSelector((state) => state.sellers);
     const { productsError, products, productsLoading } = useSelector((state) => state.products);
     const { reviewsError, reviews, reviewsLoading } = useSelector((state) => state.reviews);
-    const { revenuesError, ordersError, orders, ordersLoading, orderStatusCounts, orderStatusCountsError, totalRevenue } =
-        useSelector((state) => state.orders);
+    const { categories, getCategoryLoading, getCategoryError } = useSelector((state) => state.category);
+    const {
+        revenuesError,
+        ordersError,
+        orders,
+        ordersLoading,
+        orderStatusCounts,
+        orderStatusCountsError,
+        totalRevenue,
+    } = useSelector((state) => state.orders);
 
     useEffect(() => {
         dispatch(getAllUsers());
@@ -30,6 +40,7 @@ const AdminDashboard = () => {
         dispatch(getAllorders());
         dispatch(getTotalRevenue());
         dispatch(getOrderStatusCounts());
+        dispatch(getCategories);
     }, [dispatch]);
 
     const stats = DashboardStats({
@@ -48,6 +59,9 @@ const AdminDashboard = () => {
         ordersLoading,
         ordersError,
         orders,
+        categories,
+        getCategoryLoading,
+        getCategoryError,
         orderStatusCounts,
         orderStatusCountsError,
         totalRevenue,
@@ -56,26 +70,52 @@ const AdminDashboard = () => {
 
     return (
         <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
-            <h1 className="text-2xl md:text-3xl font-semibold mb-6">Admin Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {stats.map((item, index) => (
-                    <Link
-                        to={item.link}
-                        key={index}
-                        className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex justify-between items-center hover:shadow-lg hover:scale-[1.02] transition"
-                    >
-                        <div>
-                            <p className="text-sm text-gray-500 dark:text-gray-300">{item.label}</p>
-                            <h3 className="text-2xl font-bold">{item.value}</h3>
+            {/* Revenue Card - Full Width */}
+            <div className="w-full mb-6">
+                {stats
+                    .filter((item) => item.label === "Revenue")
+                    .map((item, index) => (
+                        <div
+                            key={index}
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col md:flex-row justify-between items-center hover:scale-[1.02] transition"
+                        >
+                            <div>
+                                <p className="text-lg text-gray-500 dark:text-gray-300">{item.label}</p>
+                                <h3 className="text-4xl font-bold mt-1 text-pink-600 dark:text-pink-400">{item.value}</h3>
+                            </div>
+                            <div className={`p-4 rounded-full ${item.bg} mt-4 md:mt-0`}>{item.icon}</div>
                         </div>
-                        <div className={`p-3 rounded-full ${item.bg}`}>{item.icon}</div>
-                    </Link>
-                ))}
+                    ))}
             </div>
 
-            {/* Coming Soon Cards */}
+            {/* All Other Stat Cards - Fully Clickable */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {stats
+                    .filter((item) => item.label !== "Revenue")
+                    .map((item, index) => (
+                        <Link
+                            to={item.link}
+                            key={index}
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col justify-between transition-transform duration-200 hover:scale-[1.03] group"
+                        >
+                            <div className="flex justify-between items-center mb-4">
+                                <div>
+                                    <p className="text-md text-gray-500 dark:text-gray-300">{item.label}</p>
+                                    <h3 className="text-3xl font-bold mt-1">{item.value}</h3>
+                                </div>
+                                <div className={`p-3 rounded-full ${item.bg}`}>{item.icon}</div>
+                            </div>
+
+                            <span className="mt-4 inline-block text-sm font-medium text-blue-600 group-hover:underline">
+                                View Details →
+                            </span>
+                        </Link>
+                    ))}
+            </div>
+
+            {/* Coming Soon Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-20">
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
                     <h2 className="text-lg font-semibold mb-2">Recent Orders</h2>

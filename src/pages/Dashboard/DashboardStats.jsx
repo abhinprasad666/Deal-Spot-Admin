@@ -1,7 +1,8 @@
 import {
   Users, ShoppingCart, Package, DollarSign,
   UserCheck, MessageSquareText, Clock,
-  XCircle, CheckCircle2, Truck
+  XCircle, CheckCircle2, Truck,
+  LayoutGrid
 } from "lucide-react";
 import ButtonLoader from "../../components/loaders/ButtonLoader";
 
@@ -18,7 +19,9 @@ const renderValue = ({ loading, error, value }) => {
   reviewsLoading, reviewsError, reviews,
   ordersLoading, ordersError, orders,
   orderStatusCounts,
-  totalRevenue, revenuesError,orderStatusCountsError
+  totalRevenue, revenuesError,orderStatusCountsError,
+   getCategoryError,categories,  getCategoryLoading,
+   
 }) => [
   {
     label: "Total Customers",
@@ -41,6 +44,13 @@ const renderValue = ({ loading, error, value }) => {
     bg: "bg-yellow-500",
     link: "/admin/products",
   },
+  {
+  label: "Total Categories",
+  value: renderValue({ loading: getCategoryLoading, error: getCategoryError, value:categories?.count }),
+  icon: <LayoutGrid className="text-white" size={24} />, 
+  bg: "bg-purple-500",
+  link: "/admin/categories",
+},
   {
     label: "Total Reviews",
     value: renderValue({ loading: reviewsLoading, error: reviewsError, value: reviews?.count }),

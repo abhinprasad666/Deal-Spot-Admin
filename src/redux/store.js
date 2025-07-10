@@ -5,7 +5,7 @@ import sellers from "./slices/sellerSlice/sellerSlice"
 import products from "./slices/productSlice/productSlice"
 import reviews from "./slices/reviews/reviewSlice"
 import orders from "./slices/orderSlice/orderSlice"
-
+import category from "./slices/categorySlices/categorySlices"
 
 
 
@@ -16,7 +16,8 @@ export const store = configureStore({
    sellers,
    products,
    reviews,
-   orders
+   orders,
+   category,
 
 
 
