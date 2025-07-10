@@ -26,7 +26,7 @@ const AdminNavbar = () => {
                     <div className="flex justify-between items-center h-16">
                         {/* Logo */}
                         <Link to="/admin/dashboard" className="flex flex-col leading-tight">
-                            <span className="text-xl sm:text-2xl font-bold tracking-tight">
+                            <span className="text-xl font-bold tracking-tight">
                                 <span className="text-white">Deal</span>
                                 <span className="text-yellow-300">Spot</span>
                             </span>
@@ -34,13 +34,13 @@ const AdminNavbar = () => {
                         </Link>
 
                         {/* Right Side */}
-                        <div className="flex items-center space-x-5">
-                            {/* Dashboard Button */}
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            {/* Dashboard (hidden on very small screens) */}
                             <Link
                                 to="/"
-                                className="flex items-center gap-2 text-base font-semibold px-3 py-1 rounded-md bg-white/10 hover:bg-white/30 transition"
+                                className="hidden sm:flex items-center gap-2 text-sm font-semibold px-3 py-1 rounded-md bg-white/10 hover:bg-white/30 transition"
                             >
-                                <LayoutDashboard size={20} />
+                                <LayoutDashboard size={18} />
                                 Dashboard
                             </Link>
 
@@ -49,24 +49,26 @@ const AdminNavbar = () => {
                                 onClick={toggleTheme}
                                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                             >
-                                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
                             </button>
 
-                            {/* Notification */}
+                            {/* Notifications */}
                             <button className="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                                <Bell size={20} />
+                                <Bell size={18} />
                                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
                             </button>
 
-                            {/* Profile Dropdown */}
-                            <ProfileDropdown />
+                            {/* Profile (hidden on xs, shown on sm+) */}
+                            <div className="hidden sm:block">
+                                <ProfileDropdown />
+                            </div>
 
-                            {/* Sidebar Toggle */}
+                            {/* Sidebar Toggle (always visible) */}
                             <button
                                 onClick={() => setSidebarOpen((prev) => !prev)}
                                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                             >
-                                {isSidebarOpen ? <X size={26} /> : <Menu size={26} />}
+                                {isSidebarOpen ? <X size={22} /> : <Menu size={22} />}
                             </button>
                         </div>
                     </div>

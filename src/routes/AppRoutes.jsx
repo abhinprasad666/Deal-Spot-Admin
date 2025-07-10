@@ -8,6 +8,8 @@ import NotFound from "../pages/NotFound";
 import AdminUsersPage from "../pages/AdminEntityList/AdminUsersPage";
 import AdminSellersPage from "../pages/AdminEntityList/AdminSellersPage";
 import ProductListTable from "../pages/ProductListTable/ProductListTable";
+import OrdersListTable from "../pages/OrdersListTable/OrderTable";
+import OrdersPage from "../pages/OrdersListTable/OrderPage";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
                     { path: "admin/users", element: <AdminUsersPage /> },
                     { path: "admin/sellers", element: <AdminSellersPage /> },
                     { path: "admin/products", element: <ProductListTable/> },
+                    { path: "admin/orders", element: <OrdersPage/> },
                 ],
             },
         ],
