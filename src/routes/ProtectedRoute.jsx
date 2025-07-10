@@ -3,28 +3,24 @@ import { useSelector } from "react-redux";
 import Loader from "../components/loaders/Loader";
 
 const ProtectedRoute = ({ isAdmin }) => {
-  const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
+    const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
 
-  console.log("User....", user);
-  console.log("User is auth", isAuthenticated);
-  console.log("User.... loading", loading);
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (!isAuthenticated && !loading) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (isAuthenticated) {
-    if (isAdmin === true && user.role !== "admin") {
-      return <Navigate to="/login" replace />;
+    if (loading) {
+        return <Loader />;
     }
-    return <Outlet />;
-  }
 
-  return null; 
+    if (!isAuthenticated && !loading) {
+        return <Navigate to="/login" replace />;
+    }
+
+    if (isAuthenticated) {
+        if (isAdmin === true && user.role !== "admin") {
+            return <Navigate to="/login" replace />;
+        }
+        return <Outlet />;
+    }
+
+    return null;
 };
 
 export default ProtectedRoute;

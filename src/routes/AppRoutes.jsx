@@ -1,43 +1,44 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
-import  ProtectedRoute from "../routes/ProtectedRoute"
+import ProtectedRoute from "../routes/ProtectedRoute";
 import AdminWelcome from "../pages/AdminWelcome/AdminWelcome";
-import Login from "../pages/login/Login"
+import Login from "../pages/login/Login";
 import NotFound from "../pages/NotFound";
- 
+import AdminUsersPage from "../pages/AdminEntityList/AdminUsersPage";
+import AdminSellersPage from "../pages/AdminEntityList/AdminSellersPage";
+import ProductListTable from "../pages/ProductListTable/ProductListTable";
+
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <ProtectedRoute/>,
+        element: <ProtectedRoute />,
         children: [
             {
-                element:<MainLayout /> ,
+                element: <MainLayout />,
                 children: [
-                    { path: "", element: <AdminDashboard/> },
-                    
+                    { path: "", element: <AdminDashboard /> },
+                    { path: "admin/users", element: <AdminUsersPage /> },
+                    { path: "admin/sellers", element: <AdminSellersPage /> },
+                    { path: "admin/products", element: <ProductListTable/> },
                 ],
             },
         ],
     },
 
-   
-
-
-//welcome seller
-     {
+    //welcome seller
+    {
         path: "/welcome",
-        element:<AdminWelcome/>
-        
+        element: <AdminWelcome />,
     },
 
     //  Auth Routes
     {
         path: "/login",
-        element: <Login/>,
+        element: <Login />,
         // children: [{ path: "", element: <Login /> }],
     },
-   
+
     // {
     //     path: "/forgot-password",
     //     element: <AuthLayout />,
@@ -64,7 +65,6 @@ const router = createBrowserRouter([
     //     children: [{ path: "", element: <ResetErrorPage /> }],
     // },
 
-  
     // 404 Page
     { path: "*", element: <NotFound /> },
 ]);
