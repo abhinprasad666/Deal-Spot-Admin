@@ -5,9 +5,11 @@ const initialState = {
  ordersLoading: false,
  orders: [],
  totalRevenue:null,
- orderStatusCounts:null,
-  error:null,
-
+ orderStatusCounts:{},
+ ordersError:null,
+ revenuesError:null,
+  orderStatusCountsError:null,
+  
 }
 
 const orderslice = createSlice({
@@ -15,46 +17,46 @@ const orderslice = createSlice({
   initialState,
   reducers: {
    ordersRequest: (state) => {
-      state.reviewLoading = true
+      state. ordersLoading = true
       
     },
    ordersSuccess: (state, action) => {
-      state.reviewLoading = false
-      state.orders = action.payload.orders 
+      state. ordersLoading = false
+      state.orders = action.payload
      
     },
    ordersFail: (state,action) => {
-      state.reviewLoading = false
-      state.error=action.payload
+      state. ordersLoading = false
+      state.ordersError=action.payload
     },
 
     ///totalRevenue
    totalRevenueRequest: (state) => {
-      state.reviewLoading = true
+      state. ordersLoading = true
       
     },
    totalRevenueSuccess: (state, action) => {
-      state.reviewLoading = false
-      state.orders = action.payload.totalRevenue
+      state. ordersLoading = false
+      state.totalRevenue = action.payload.totalRevenue
      
     },
    totalRevenueFail: (state,action) => {
-      state.reviewLoading = false
-      state.error=action.payload
+      state. ordersLoading = false
+      state.revenuesError=action.payload
     },
 //
 orderStatusCountsRequest: (state) => {
-      state.reviewLoading = true
+      state. ordersLoading = true
       
     },
   orderStatusCountsSuccess: (state, action) => {
-      state.reviewLoading = false
-      state.orders = action.payload.orderStatusCounts
+      state. ordersLoading = false
+      state.orderStatusCounts = action.payload.statusCounts
      
     },
    orderStatusCountsFail: (state,action) => {
-      state.reviewLoading = false
-      state.error=action.payload
+      state. ordersLoading = false
+      state. orderStatusCountsError=action.payload
     },
   },
 })

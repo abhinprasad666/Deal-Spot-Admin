@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  reviewLoading: false,
+  reviewsLoading: false,
  reviews: [],
-  error:null,
+   reviewsError:null,
 
 }
 
@@ -13,17 +13,17 @@ const reviewslice = createSlice({
   initialState,
   reducers: {
    reviewsRequest: (state) => {
-      state.reviewLoading = true
+      state.reviewsLoading = true
       
     },
    reviewsSuccess: (state, action) => {
-      state.reviewLoading = false
-      state.reviews = action.payload.reviews 
+      state.reviewsLoading = false
+      state.reviews = action.payload
      
     },
    reviewsFail: (state,action) => {
-      state.reviewLoading = false
-      state.error=action.payload
+      state.reviewsLoading = false
+      state. reviewsError=action.payload
     },
   },
 })

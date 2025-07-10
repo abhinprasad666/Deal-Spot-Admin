@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import auth from "./slices/authSlice";
-import user from "./slices/usersSlice/usersSlice"
-import seller from "./slices/sellerSlice/sellerSlice"
-import product from "./slices/productSlice/productSlice"
-import review from "./slices/reviews/reviewSlice"
-import order from "./slices/orderSlice/orderSlice"
+import users from "./slices/usersSlice/usersSlice"
+import sellers from "./slices/sellerSlice/sellerSlice"
+import products from "./slices/productSlice/productSlice"
+import reviews from "./slices/reviews/reviewSlice"
+import orders from "./slices/orderSlice/orderSlice"
 
 
 
@@ -12,11 +12,11 @@ import order from "./slices/orderSlice/orderSlice"
 export const store = configureStore({
   reducer: {
    auth,
-   user,
-   seller,
-   product,
-   review,
-   order
+   users,
+   sellers,
+   products,
+   reviews,
+   orders
 
 
 

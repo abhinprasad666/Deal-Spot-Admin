@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  userLoading: false,
+  usersLoading: false,
   users: [],
-  error:null,
+  usersError:null,
 
 }
 
@@ -13,17 +13,17 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     usersRequest: (state) => {
-      state.userLoading = true
+      state.usersLoading = true
       
     },
     usersSuccess: (state, action) => {
-      state.userLoading = false
-      state.users = action.payload.users 
+      state.usersLoading = false
+      state.users = action.payload 
      
     },
     usersFail: (state,action) => {
-      state.userLoading = false
-      state.error=action.payload
+      state.usersLoading = false
+      state.usersError=action.payload
     },
   },
 })
