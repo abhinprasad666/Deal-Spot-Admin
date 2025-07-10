@@ -21,7 +21,7 @@ const renderValue = ({ loading, error, value }) => {
   totalRevenue, revenuesError,orderStatusCountsError
 }) => [
   {
-    label: "Total Users",
+    label: "Total Customers",
     value: renderValue({ loading: usersLoading, error: usersError, value: users?.count }),
     icon: <Users className="text-white" size={24} />,
     bg: "bg-blue-500",
@@ -88,6 +88,6 @@ const renderValue = ({ loading, error, value }) => {
     value: renderValue({ loading: ordersLoading, error: revenuesError, value: totalRevenue }),
     icon: <DollarSign className="text-white" size={24} />,
     bg: "bg-pink-500",
-    link: "/admin/orders",
+    link: "/",
   },
 ];

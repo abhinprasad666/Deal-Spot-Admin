@@ -6,7 +6,7 @@ import EditPopupModal from "./EditPopupModal";
 const AdminEntityList = ({ entityName, data, loading, error }) => {
     const [editingField, setEditingField] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const usersPerPage = 5;
+    const usersPerPage = 8;
 
     const allEntities = data || [];
     const totalEntities = allEntities.length;
@@ -25,7 +25,7 @@ const AdminEntityList = ({ entityName, data, loading, error }) => {
     };
 
     const handleSave = () => {
-        console.log("Dispatch update for", editingField); // Add dispatch
+        console.log("Dispatch update for", editingField);
         setEditingField(null);
     };
 
@@ -50,7 +50,7 @@ const AdminEntityList = ({ entityName, data, loading, error }) => {
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
                         totalPages={totalPages}
-                        entityName={entityName} // ✅ fixed: passed properly
+                        entityName={entityName}
                     />
 
                     {editingField && (

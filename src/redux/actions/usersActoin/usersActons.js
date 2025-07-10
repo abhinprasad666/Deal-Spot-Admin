@@ -9,6 +9,7 @@ export const getAllUsers = () => async (dispatch) => {
         const { data } = await axiosInstance.get("api/v1/admin/users");
         dispatch(usersSuccess(data));
         
+        
     } catch (error) {
         console.warn("get users failed:", error.response?.data?.error || error.message);
 

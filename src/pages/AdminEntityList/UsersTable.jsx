@@ -100,7 +100,7 @@ const UsersTable = ({
                                 </td>
                                 <td className="px-4 py-2">
                                     <Link
-                                        to={`/admin/${entityPath}/${user._id}`} // ✅ safe fallback
+                                        to={`/admin/${entityPath}/${user._id}`}
                                         className="inline-flex items-center text-blue-500 hover:underline"
                                     >
                                         <Eye className="w-4 h-4 mr-1" /> View Detail
