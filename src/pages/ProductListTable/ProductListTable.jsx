@@ -9,6 +9,7 @@ const ProductListTable = () => {
   const { products } = useSelector((state) => state.products);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [expandedProductId, setExpandedProductId] = useState(null);
   const productsPerPage = 5;
 
   const filteredProducts =
@@ -26,16 +27,27 @@ const ProductListTable = () => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const currentProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage);
 
-  const handleEdit = (product) => console.log("Edit clicked:", product);
-  const handleDelete = (productId) => console.log("Delete clicked:", productId);
   const handlePageChange = (newPage) => {
     if (newPage < 1 || newPage > totalPages) return;
     setCurrentPage(newPage);
   };
 
+  const handleEdit = (product) => {
+    console.log("Edit clicked:", product);
+  };
+
+  const handleDelete = (productId) => {
+    console.log("Delete clicked:", productId);
+  };
+
+  const toggleReviews = (productId) => {
+    setExpandedProductId(prev => (prev === productId ? null : productId));
+  };
+
   return (
     <div className="p-4">
       <SearchInput search={search} setSearch={setSearch} setCurrentPage={setCurrentPage} />
+
       <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 text-center md:hidden">
         Scroll sideways to view all columns ⟶
       </p>
@@ -50,6 +62,8 @@ const ProductListTable = () => {
                 product={product}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
+                isExpanded={expandedProductId === product._id}
+                toggleReviews={toggleReviews}
               />
             ))}
           </tbody>
