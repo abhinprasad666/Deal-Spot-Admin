@@ -37,7 +37,7 @@ const OrderTable = ({ orders, initialStatusFilter = "All" }) => {
   };
 
   return (
-    <div className="p-4 overflow-x-auto">
+    <div className="p-4 overflow-x-auto dark:bg-gray-900">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Order Summary</h2>
 
@@ -62,7 +62,7 @@ const OrderTable = ({ orders, initialStatusFilter = "All" }) => {
       </div>
 
       <div className="min-w-[1000px]">
-        <div className="grid grid-cols-12 bg-gray-100 font-semibold text-sm p-2 rounded-t">
+        <div className="grid grid-cols-12 bg-gray-100 font-semibold text-sm p-2 rounded-t dark:bg-gray-700 mt-5">
           <div className="col-span-2">User</div>
           <div className="col-span-3">Products</div>
           <div className="col-span-1">Payment</div>

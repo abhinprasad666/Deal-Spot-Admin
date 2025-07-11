@@ -11,6 +11,7 @@ const ProductListTable = () => {
   const [search, setSearch] = useState("");
   const [expandedProductId, setExpandedProductId] = useState(null);
   const productsPerPage = 5;
+    const [productId, setProductId] = useState(null);
 
   const filteredProducts =
     products?.products.filter((p) => {
@@ -42,6 +43,7 @@ const ProductListTable = () => {
 
   const toggleReviews = (productId) => {
     setExpandedProductId(prev => (prev === productId ? null : productId));
+   setProductId(productId)
   };
 
   return (
@@ -64,6 +66,7 @@ const ProductListTable = () => {
                 onDelete={handleDelete}
                 isExpanded={expandedProductId === product._id}
                 toggleReviews={toggleReviews}
+                productId={productId}
               />
             ))}
           </tbody>

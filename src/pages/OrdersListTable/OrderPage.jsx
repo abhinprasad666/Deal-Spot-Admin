@@ -13,7 +13,7 @@ const OrdersPage = () => {
     : "All";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white ">
       <OrderTable orders={orders} initialStatusFilter={status} />
     </div>
   );

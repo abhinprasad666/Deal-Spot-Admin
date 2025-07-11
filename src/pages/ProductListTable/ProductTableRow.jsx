@@ -1,13 +1,11 @@
 import React from "react";
 import { Star, StarOff, Pencil, Trash2, MessageCircle } from "lucide-react";
+import { useSelector } from "react-redux";
 
-// Dummy Reviews
-const dummyReviews = [
-    { id: 1, user: "Abi", rating: 4, comment: "Very good product!" },
-    { id: 2, user: "Rahul", rating: 5, comment: "Loved it!" },
-];
 
-const ProductTableRow = ({ product, onEdit, onDelete, isExpanded, toggleReviews }) => {
+const ProductTableRow = ({ product, onEdit, onDelete, isExpanded, toggleReviews,  productId}) => {
+  const { reviews} = useSelector((state) => state.reviews);
+
     return (
         <>
             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
@@ -78,17 +76,20 @@ const ProductTableRow = ({ product, onEdit, onDelete, isExpanded, toggleReviews 
                     <td colSpan="11" className="bg-gray-50 dark:bg-gray-800 px-6 py-4 text-left">
                         <div className="text-sm text-gray-700 dark:text-gray-200 space-y-2">
                             <h4 className="font-semibold mb-2">Reviews:</h4>
-                            {dummyReviews.length > 0 ? (
-                                dummyReviews.map((review) => (
+                            {reviews.reviews.length > 0 ? (
+                             reviews.reviews.map((review) =>{
+                                if(productId===review.product._id) {
+                                    return(
+                                
                                     <div
-                                        key={review.id}
+                                        key={review._id}
                                         className="border border-gray-300 dark:border-gray-600 rounded p-2"
                                     >
-                                        <p className="font-medium">{review.user}</p>
+                                        <p className="font-medium">{review.user.name}</p>
                                         <p className="text-yellow-500">★ {review.rating}</p>
                                         <p>{review.comment}</p>
                                     </div>
-                                ))
+                                )}})
                             ) : (
                                 <p className="italic text-gray-400">No reviews yet.</p>
                             )}

@@ -19,7 +19,7 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
     };
 
     return (
-        <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 p-2 text-sm hover:bg-gray-50 transition">
+        <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 p-2 text-sm dark:hover hover:bg-gray-800 transition ">
             {/* User */}
             <div className="col-span-2">
                 <div className="font-medium">{order.userId.name}</div>

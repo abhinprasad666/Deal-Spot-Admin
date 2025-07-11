@@ -1,6 +1,6 @@
 const ShippingAddress = ({ address }) => {
   return (
-    <div className="mt-2 text-xs text-gray-700 space-y-1">
+    <div className="mt-2 text-xs text-gray-700 space-y-1 dark:text-gray-100 ">
       <div>
         <strong>Name:</strong> {address.fullName}
       </div>
