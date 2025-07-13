@@ -3,6 +3,7 @@ const CategoryTableHeader = () => (
         <tr className="h-12">
             <th className="px-4 py-2">Image</th>
             <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Label</th>
             <th className="px-4 py-2">Status</th>
             <th className="px-4 py-2">Created At</th>
             <th className="px-4 py-2">Updated At</th>

@@ -31,17 +31,19 @@ const AdminDashboard = () => {
         orderStatusCountsError,
         totalRevenue,
     } = useSelector((state) => state.orders);
-
+const { isAuthenticated} = useSelector((state) => state.auth);
+console.log("is auth",isAuthenticated)
     useEffect(() => {
-        dispatch(getAllUsers());
+      if(isAuthenticated)
+       { dispatch(getAllUsers());
         dispatch(getAllsellers());
         dispatch(getAllproducts());
         dispatch(getAllreviews());
         dispatch(getAllorders());
         dispatch(getTotalRevenue());
         dispatch(getOrderStatusCounts());
-        dispatch(getCategories);
-    }, [dispatch]);
+        dispatch(getCategories);}
+    }, [dispatch,isAuthenticated]);
 
     const stats = DashboardStats({
         usersLoading,

@@ -49,24 +49,7 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
         },
 
-        // Register
-        registerRequest: (state) => {
-            state.loading = true;
-            state.error = null;
-        },
-        registerSuccess: (state, action) => {
-            state.loading = false;
-            state.user = action.payload.user;
-            state.isAuthenticated = true;
-            localStorage.setItem("isLoggedIn", "true");
-        },
-        registerFail: (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-            state.isAuthenticated = false;
-        },
-
-        // Logout
+       
          logoutRequest: (state) => {
             state.loading = true;
             state.error = null;
@@ -82,11 +65,14 @@ const authSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.isAuthenticated = false;
+          
         },
+     
             clearAuthStateMessage: (state) => {
             state.loading = false;
             state.error = null;
             state.loginMessage=null
+            
         },
 
     },

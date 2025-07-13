@@ -107,7 +107,7 @@ const AdminSidebar = ({ isOpen, onClose, theme }) => {
                 <ListOrdered size={18} /> All Categories
               </Link>
               <Link
-                to="/admin/categories/create"
+                to="/admin/category/create"
                 onClick={onClose}
                 className="flex items-center gap-2 p-2 rounded-md bg-blue-100 dark:bg-blue-900/50 hover:bg-blue-200 dark:hover:bg-blue-800 transition font-semibold"
               >

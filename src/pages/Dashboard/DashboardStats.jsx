@@ -24,7 +24,7 @@ const renderValue = ({ loading, error, value }) => {
    
 }) => [
   {
-    label: "Total Customers",
+    label: "Total Users",
     value: renderValue({ loading: usersLoading, error: usersError, value: users?.count }),
     icon: <Users className="text-white" size={24} />,
     bg: "bg-blue-500",

@@ -12,6 +12,7 @@ import ProductListTable from "../pages/ProductListTable/ProductListTable";
 import OrdersPage from "../pages/OrdersListTable/OrderPage";
 import CategoryTable from "../pages/category/CategoryTable";
 import CreateCategoryPage from "../pages/category/CreateCategoryForm";
+import CategoryEdit from "../pages/category/CategoryEdit";
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
                     { path: "admin/orders", element: <OrdersPage/> },
                     { path: "admin/categories", element: <CategoryTable/> },
                     { path: "admin/category/create", element: <CreateCategoryPage/> },
+                    { path: "admin/update/category/:id", element: <CategoryEdit/> },
                 ],
             },
         ],

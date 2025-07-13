@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { LogOut, Settings, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../redux/actions/authActions/logoutAction";
+import { useDispatch } from "react-redux";
+import { clearAuthStateMessage } from "../../redux/slices/authSlice";
 
 const ProfileDropdown = () => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        console.log("Admin Logged out");
-        navigate("/login");
-    };
+     const dispatch = useDispatch();
+
+
+     const handleLogout = () => {
+         dispatch(logout());
+         dispatch(clearAuthStateMessage());
+         navigate("/login")
+     };
 
     useEffect(() => {
         const handleClickOutside = (e) => {

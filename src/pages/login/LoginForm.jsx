@@ -107,9 +107,7 @@ const LoginForm = () => {
             Forgot password?
           </Link>
         </div>
-
-        {/* Submit Button */}
-        <button
+  <button
           type="submit"
           disabled={loading}
           className={`w-full text-white py-2 rounded-md transition flex justify-center items-center 
@@ -121,6 +119,8 @@ const LoginForm = () => {
             "Login"
           )}
         </button>
+        {/* Submit Button */}
+      
 
         {/* Show Redux Error */}
         {error && (
