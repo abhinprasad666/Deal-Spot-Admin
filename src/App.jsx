@@ -9,15 +9,13 @@ import router from "./routes/AppRoutes";
 const App = () => {
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-        if (isLoggedIn === "true") {
+        const isAdmin = sessionStorage.getItem("admin");
+
+        if (isAdmin === "true") {
             dispatch(loadUser());
-          
         }
     }, [dispatch]);
-
 
     return (
         <>

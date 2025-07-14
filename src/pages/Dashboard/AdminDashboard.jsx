@@ -32,10 +32,8 @@ const AdminDashboard = () => {
         totalRevenue,
     } = useSelector((state) => state.orders);
 const { isAuthenticated} = useSelector((state) => state.auth);
-console.log("is auth",isAuthenticated)
     useEffect(() => {
-      if(isAuthenticated)
-       { dispatch(getAllUsers());
+      dispatch(getAllUsers());
         dispatch(getAllsellers());
         dispatch(getAllproducts());
         dispatch(getAllreviews());
@@ -43,7 +41,7 @@ console.log("is auth",isAuthenticated)
         dispatch(getTotalRevenue());
         dispatch(getOrderStatusCounts());
         dispatch(getCategories);}
-    }, [dispatch,isAuthenticated]);
+    , [dispatch,isAuthenticated]);
 
     const stats = DashboardStats({
         usersLoading,

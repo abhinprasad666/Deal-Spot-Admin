@@ -10,14 +10,13 @@ const ProfileDropdown = () => {
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-
-     const handleLogout = () => {
-         dispatch(logout());
-         dispatch(clearAuthStateMessage());
-         navigate("/login")
-     };
+    const handleLogout = () => {
+        dispatch(logout());
+        dispatch(clearAuthStateMessage());
+        navigate("/login");
+    };
 
     useEffect(() => {
         const handleClickOutside = (e) => {
