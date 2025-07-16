@@ -51,6 +51,7 @@ const CategoryTable = () => {
 
         if (deleteSingleCategory) {
             dispatch(deleteCategory(deleteSingleCategory));
+            setDeleteCategory(null)
         }
 
         if (categoryDelete) {
@@ -83,7 +84,7 @@ const CategoryTable = () => {
             </div>
 
             {categoryDeleteLoading ? (
-                <ButtonLoader size={6} color="red" message="deleting" />
+                <ButtonLoader size={6} color="red" message="deleting" messageClass={'bg-red'} />
             ) : (
                 <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded shadow">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">

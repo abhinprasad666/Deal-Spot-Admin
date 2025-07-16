@@ -97,7 +97,8 @@ const categoriesSlice = createSlice({
             state.getCategoryError = null;
             state.categoryError = null;
             state.isUpdateCategory = null;
-            (state.singleCategoryLoading = null), (state.getSingleCategoryError = null);
+            state.singleCategoryLoading = null, 
+            state.getSingleCategoryError = null;
             state.updateCategoryLoading = null;
             state.updateCategoryError = null;
             state.categoryDeleteLoading = false;

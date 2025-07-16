@@ -19,11 +19,11 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
     };
 
     return (
-        <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 p-2 text-sm dark:hover hover:bg-gray-800 transition ">
+        <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 dark:border-gray-700 p-2 text-sm text-gray-800 dark:text-gray-100 transition hover:bg-gray-100 dark:hover:bg-gray-700">
             {/* User */}
             <div className="col-span-2">
                 <div className="font-medium">{order.userId.name}</div>
-                <div className="text-xs text-gray-500">{order.userId.email}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{order.userId.email}</div>
             </div>
 
             {/* Products */}
@@ -36,8 +36,8 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                 <span
                     className={`px-2 py-1 text-xs rounded font-medium ${
                         order.paymentMethod === "onlinePayment"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-yellow-100 text-yellow-700"
+                            ? "bg-green-100 text-green-700 dark:bg-green-200 dark:text-green-800"
+                            : "bg-yellow-100 text-yellow-700 dark:bg-yellow-200 dark:text-yellow-800"
                     }`}
                 >
                     {order.paymentMethod}
@@ -57,15 +57,15 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                         <span
                             className={`px-2 py-1 text-xs rounded font-medium block ${
                                 order.status === "Delivered"
-                                    ? "bg-green-100 text-green-700"
+                                    ? "bg-green-100 text-green-700 dark:bg-green-200 dark:text-green-800"
                                     : order.status === "Cancelled"
-                                    ? "bg-red-100 text-red-600"
-                                    : "bg-blue-100 text-blue-700"
+                                    ? "bg-red-100 text-red-600 dark:bg-red-200 dark:text-red-800"
+                                    : "bg-blue-100 text-blue-700 dark:bg-blue-200 dark:text-blue-800"
                             }`}
                         >
                             {order.status}
                         </span>
-                        <button onClick={() => setIsEditing(true)} className="text-xs text-blue-600 underline">
+                        <button onClick={() => setIsEditing(true)} className="text-xs text-blue-600 underline dark:text-blue-400">
                             Status Change
                         </button>
                     </>
@@ -77,10 +77,10 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                             options={["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled", "Refunded"]}
                         />
                         <div className="flex gap-2 mt-1">
-                            <button onClick={handleUpdate} className="text-green-600 text-xs underline">
+                            <button onClick={handleUpdate} className="text-green-600 text-xs underline dark:text-green-400">
                                 Update
                             </button>
-                            <button onClick={handleCancel} className="text-gray-500 text-xs underline">
+                            <button onClick={handleCancel} className="text-gray-500 text-xs underline dark:text-gray-300">
                                 Cancel
                             </button>
                         </div>
@@ -89,13 +89,15 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
             </div>
 
             {/* Paid At */}
-            <div className="col-span-1 text-xs">{order.paidAt ? new Date(order.paidAt).toLocaleString() : "Not Paid"}</div>
+            <div className="col-span-1 text-xs">
+                {order.paidAt ? new Date(order.paidAt).toLocaleString() : "Not Paid"}
+            </div>
 
             {/* Address */}
             <div className="col-span-1">
                 <button
                     onClick={() => toggleAddress(order._id)}
-                    className="flex items-center text-blue-600 hover:underline"
+                    className="flex items-center text-blue-600 dark:text-blue-400 hover:underline"
                 >
                     {expandedRows.includes(order._id) ? (
                         <>
@@ -108,12 +110,17 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                     )}
                 </button>
 
-                {expandedRows.includes(order._id) && <ShippingAddress address={order.shippingAddress} />}
+                {expandedRows.includes(order._id) && (
+                    <ShippingAddress address={order.shippingAddress} />
+                )}
             </div>
 
             {/* Actions */}
             <div className="col-span-1">
-                <button onClick={() => alert("Delete clicked")} className="text-red-500 hover:text-red-700 transition">
+                <button
+                    onClick={() => alert("Delete clicked")}
+                    className="text-red-500 hover:text-red-700 dark:hover:text-red-400 transition"
+                >
                     <FaTrash />
                 </button>
             </div>
