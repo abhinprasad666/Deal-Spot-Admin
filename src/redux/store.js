@@ -6,7 +6,7 @@ import products from "./slices/productSlice/productSlice"
 import reviews from "./slices/reviews/reviewSlice"
 import orders from "./slices/orderSlice/orderSlice"
 import category from "./slices/categorySlices/categorySlices"
-
+import deleteUser from "./slices/usersSlice/deleteUserSlice/deleteUserSlice"
 
 
 export const store = configureStore({
@@ -18,8 +18,7 @@ export const store = configureStore({
    reviews,
    orders,
    category,
-
-
+   deleteUser
 
   },
 });

@@ -1,25 +1,44 @@
 import { FaTrash, FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OrderProductList from "./OrderProductList";
 import ShippingAddress from "./ShippingAddress";
 import StatusDropdown from "./StatusDropdown";
+import { useDispatch } from "react-redux";
+import { getAllorders, updateOrderStatus } from "../../redux/actions/ordersActions/ordersActions";
 
-const OrderRow = ({ order, expandedRows, toggleAddress }) => {
+const OrderRow = ({ order,ordersLoading, expandedRows, toggleAddress }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [localStatus, setLocalStatus] = useState(order.status);
 
+    console.log("orderid",order._id,localStatus)
+    const dispatch=useDispatch()
+   
     const handleUpdate = () => {
-        alert(`Status updated to: ${localStatus}`);
+        // alert(`Status updated to: ${localStatus}`);
         setIsEditing(false);
+        dispatch(updateOrderStatus({localStatus,orderId:order._id}))
+     
+        
     };
+
+     useEffect(()=>{
+        dispatch(getAllorders());
+    },[dispatch])
 
     const handleCancel = () => {
         setLocalStatus(order.status);
         setIsEditing(false);
     };
+        useEffect(() => {
+        
+            
+        
+            }
+        , [dispatch]);
 
     return (
-        <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 dark:border-gray-700 p-2 text-sm text-gray-800 dark:text-gray-100 transition hover:bg-gray-100 dark:hover:bg-gray-700">
+        <>
+      { ordersLoading? "upating..." : <div className="grid grid-cols-12 items-start gap-2 border-b border-gray-200 dark:border-gray-700 p-2 text-sm text-gray-800 dark:text-gray-100 transition hover:bg-gray-100 dark:hover:bg-gray-700">
             {/* User */}
             <div className="col-span-2">
                 <div className="font-medium">{order.userId.name}</div>
@@ -63,9 +82,12 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                                     : "bg-blue-100 text-blue-700 dark:bg-blue-200 dark:text-blue-800"
                             }`}
                         >
-                            {order.status}
+                            {ordersLoading? "updating...":order.status}
                         </span>
-                        <button onClick={() => setIsEditing(true)} className="text-xs text-blue-600 underline dark:text-blue-400">
+                        <button
+                            onClick={() => setIsEditing(true)}
+                            className="text-xs text-blue-600 underline dark:text-blue-400"
+                        >
                             Status Change
                         </button>
                     </>
@@ -76,7 +98,7 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                             onChange={setLocalStatus}
                             options={["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled", "Refunded"]}
                         />
-                        <div className="flex gap-2 mt-1">
+                       <div className="flex gap-2 mt-1">
                             <button onClick={handleUpdate} className="text-green-600 text-xs underline dark:text-green-400">
                                 Update
                             </button>
@@ -89,9 +111,7 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
             </div>
 
             {/* Paid At */}
-            <div className="col-span-1 text-xs">
-                {order.paidAt ? new Date(order.paidAt).toLocaleString() : "Not Paid"}
-            </div>
+            <div className="col-span-1 text-xs">{order.paidAt ? new Date(order.paidAt).toLocaleString() : "Not Paid"}</div>
 
             {/* Address */}
             <div className="col-span-1">
@@ -110,9 +130,7 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                     )}
                 </button>
 
-                {expandedRows.includes(order._id) && (
-                    <ShippingAddress address={order.shippingAddress} />
-                )}
+                {expandedRows.includes(order._id) && <ShippingAddress address={order.shippingAddress} />}
             </div>
 
             {/* Actions */}
@@ -124,7 +142,8 @@ const OrderRow = ({ order, expandedRows, toggleAddress }) => {
                     <FaTrash />
                 </button>
             </div>
-        </div>
+        </div>}
+        </>
     );
 };
 

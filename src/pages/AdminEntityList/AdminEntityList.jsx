@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { User2 } from "lucide-react";
 import UsersTable from "./UsersTable";
 import EditPopupModal from "./EditPopupModal";
+import { useDispatch } from "react-redux";
 
 const AdminEntityList = ({ entityName, data, loading, error }) => {
     const [editingField, setEditingField] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 8;
+    const dispatch = useDispatch();
 
     const allEntities = data || [];
     const totalEntities = allEntities.length;
@@ -27,6 +29,7 @@ const AdminEntityList = ({ entityName, data, loading, error }) => {
     const handleSave = () => {
         console.log("Dispatch update for", editingField);
         setEditingField(null);
+        dispatch();
     };
 
     return (

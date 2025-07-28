@@ -9,6 +9,9 @@ import {
     totalRevenueFail,
     totalRevenueRequest,
     totalRevenueSuccess,
+    updateOrderStatusFail,
+    updateOrderStatusRequest,
+    updateOrderStatusSuccess,
 } from "../../slices/orderSlice/orderSlice";
 
 export const getAllorders = () => async (dispatch) => {
@@ -50,5 +53,20 @@ export const getOrderStatusCounts = () => async (dispatch) => {
         console.warn("get orderStatusCounts failed:", error.response?.data?.error || error.message);
 
         dispatch(orderStatusCountsFail(error.response?.data?.error || "get orderStatusCounts faild"));
+    }
+};
+
+//update order status
+export const updateOrderStatus = ({localStatus, orderId}) => async (dispatch) => {
+    try {
+        console.log("action new status",localStatus)
+        dispatch(updateOrderStatusRequest());
+
+        const { data } = await axiosInstance.put(`api/v1/order/${orderId}/status`,{newStatus:localStatus});
+        dispatch(updateOrderStatusSuccess(data));
+    } catch (error) {
+        console.warn("error in update order status:", error.response?.data?.error || error.message);
+
+        dispatch(updateOrderStatusFail(error.response?.data?.error || "role update fail"));
     }
 };

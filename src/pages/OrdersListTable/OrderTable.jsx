@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const statusOptions = ["All", "Pending", "Confirmed", "Shipped", "Delivered", "Cancelled", "Refunded"];
 
-const OrderTable = ({ orders, initialStatusFilter = "All" }) => {
+const OrderTable = ({ orders,ordersLoading, initialStatusFilter = "All" }) => {
   const itemsPerPage = 5;
   const allOrders = orders?.orders || [];
 
@@ -80,6 +80,7 @@ const OrderTable = ({ orders, initialStatusFilter = "All" }) => {
             order={order}
             expandedRows={expandedRows}
             toggleAddress={toggleAddress}
+            ordersLoading={ordersLoading}
           />
         ))}
       </div>
